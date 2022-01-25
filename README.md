@@ -60,6 +60,7 @@ sudo apt install -y ros-noetic-image-proc
 #### 2. チェッカーボードの印刷
 - [チェッカーボード](http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration?action=AttachFile&do=get&target=check-108.pdf)を保存してA4で印刷する
 - チェックの交点が8x6個，一辺が0.025mの格子が描画された紙だったらOK
+
 (OpenManipulator No.10機体には既に，私が印刷したチェッカーボードを置いてある)
 
 #### 3. 測定
@@ -83,6 +84,7 @@ rosrun camera_calibration camearcalibrator.py --size 8x6 --square 0.025 image:=/
 ```
 
 3つ目のターミナルを実行したら下の写真のようなウィンドウが開きます
+
 チェッカーボードを色々な見せ方で見せて測定を行ってください
 
   - 上手くキャリブレーションさせるコツ
@@ -95,10 +97,12 @@ rosrun camera_calibration camearcalibrator.py --size 8x6 --square 0.025 image:=/
 </div>
 
 ウィンドウ右にある青い「CALIBRATE」が押せるようになったら測定は十分となり，ボタンを押すとキャリブレーションの計算が始まります
+
 この計算は数分かかります
 
 #### 4. 測定結果と取り出し
 `/tmp/calibrationdata.tar.gz`に 3. の測定結果が保存されています
+
 以下の操作で解答及びファイルのリネームをします
 
 ```
@@ -113,4 +117,5 @@ camera_name: camera        # このように修正
 ```
 
 camera.yamlを任意の位置に設定します
+
 (No.10機体のUbuntuではexperimentパッケージ内に設定しました)
