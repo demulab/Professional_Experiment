@@ -43,10 +43,8 @@ roslaunch experiment camera_bringup.launch video_device:=/dev/videoxxx
 ---
 ## ウェブカメラの内部キャリブレーション
 ### 目的
-ar_track_alvarを使用する場合，
-カメラのイメージトピック(/camera_raw), 内部パラメータトピック(/camera_info)が必要となる
-webカメラ(Logicool)をROSで扱う場合，
-内部パラメータトピック(/camera_info)の値が欠損している
+ar_track_alvarを使用する場合，カメラのイメージトピック(/camera_raw), 内部パラメータトピック(/camera_info)が必要となる
+webカメラ(Logicool)をROSで扱う場合，内部パラメータトピック(/camera_info)の値が欠損している
 つまり，**内部パラメータを自分たちでキャリブレーションを通して情報付与する必要がある**
 
 ### 手順
