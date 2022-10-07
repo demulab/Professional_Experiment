@@ -15,6 +15,18 @@
 
 ※ OpenManipulator No.10に環境を整えましたので参照ください
 
+## プロキシ設定
+gedit .bashrc
+```
+export http_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
+export https_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
+```
+sudo gedit /etc/apt/apt.conf
+```
+Acquire::http::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
+Acquire::https::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
+```
+
 ## 使用するパッケージ
 - OpenManipulator-X関連
     - 詳しくは[demura.net](https://demura.net/education/lecture/21651.html)や[ROBOTIS公式](https://emanual.robotis.com/docs/en/platform/openmanipulator_x/overview/)を参照
