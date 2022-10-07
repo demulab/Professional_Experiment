@@ -138,4 +138,3 @@ camera.yamlを任意の位置に設定します
 ```
 rosrun ar_track_alvar createMarker -s 4.5 -p
 ```
-![MarkerData_0_1_2_3](https://user-images.githubusercontent.com/42795206/194472724-98cbe8c8-fd02-47b5-8443-7decec95d059.png)
