@@ -86,7 +86,7 @@ roscore
 sudo chmod +x /dev/videoxxx
 (xxx: ウェブカメラのデバイス番号)
 
-rosrun usb_cam usb_cam.launch _video_devide:=/dev/videoxxx
+rosrun usb_cam usb_cam_node _video_devide:=/dev/videoxxx
 ```
 
 - 3つ目のターミナル
