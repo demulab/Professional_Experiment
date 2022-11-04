@@ -133,9 +133,9 @@ camera_name: camera        # このように修正
 camera.yamlを任意の位置に設定します
 
 ### ③ARマーカの印刷
-4.5cmのマーカを生成する。
+3.0cmのマーカを生成する。
 ```
-rosrun ar_track_alvar createMarker -s 4.5 -p
+rosrun ar_track_alvar createMarker -s 3.0 -p
 ```
 
 ### ④プロキシ設定
