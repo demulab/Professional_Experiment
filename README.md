@@ -138,3 +138,10 @@ camera.yamlを任意の位置に設定します
 ```
 rosrun ar_track_alvar createMarker -s 4.5 -p
 ```
+
+## ARマーカのピッキング
+```
+roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=false
+roslaunch experiment camera_bringup.launch
+python3 ar_picking_demo.py
+```
