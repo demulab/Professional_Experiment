@@ -79,17 +79,17 @@ if __name__ == '__main__':
     open_gripper()
     rospy.loginfo( "Starting Pose 1")
     pose_target_1 = Pose()
-    pose_target_1.position.x = 0.03
+    pose_target_1.position.x = 0.03 # エンドエフェクタの位置(x,y,z)を指定
     pose_target_1.position.y = 0.0
     pose_target_1.position.z = 0.15
-    yaw = math.atan2(pose_target_1.position.x, pose_target_1.position.y) - math.pi/2.0
-    q = tf.transformations.quaternion_from_euler(yaw, 0.0, 0.0)
+    yaw = math.atan2(pose_target_1.position.y, pose_target_1.position.x)
+    q = tf.transformations.quaternion_from_euler(yaw, 0.0, 0.0) # エンドエフェクタの姿勢(yaw,pitch,roll)を指定
     pose_target_1.orientation.x =  q[0]
     pose_target_1.orientation.y =  q[1]
     pose_target_1.orientation.z =  q[2]
     pose_target_1.orientation.w =  q[3]   
-    group.set_joint_value_target(pose_target_1, True)
-    group.go()
+    group.set_joint_value_target(pose_target_1, True) # 指定された位置姿勢をプランニング
+    group.go() # プランニング結果を実行
     rospy.sleep(1.0)
     pose_current = group.get_current_pose()
     rospy.loginfo("Get Current Pose:\n{}\n".format(pose_current )) 
@@ -101,7 +101,7 @@ if __name__ == '__main__':
     pose_target_2.position.x = ar_pose.position.x
     pose_target_2.position.y = ar_pose.position.y
     pose_target_2.position.z = ar_pose.position.z + 0.035 # エンドエフェクタと床の衝突を防ぐために、0.035[m]の余裕を持たせている 
-    yaw = math.atan2(pose_target_2.position.x, pose_target_2.position.y) - math.pi/2.0
+    yaw = math.atan2(pose_target_2.position.y, pose_target_2.position.x)
     q = tf.transformations.quaternion_from_euler(yaw, math.pi/2.0, 0.0)
     pose_target_2.orientation.x = q[0]
     pose_target_2.orientation.y = q[1]
@@ -121,7 +121,7 @@ if __name__ == '__main__':
     pose_target_3.position.x = 0.1
     pose_target_3.position.y = 0.1
     pose_target_3.position.z = 0.15
-    yaw = math.atan2(pose_target_3.position.x, pose_target_3.position.y) - math.pi/2.0
+    yaw = math.atan2(pose_target_3.position.y, pose_target_3.position.x)
     q = tf.transformations.quaternion_from_euler(yaw, math.pi/4.0, 0.0)
     pose_target_3.orientation.x =  q[0]
     pose_target_3.orientation.y =  q[1]
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     pose_target_4.position.x = 0.1
     pose_target_4.position.y = 0.0
     pose_target_4.position.z = 0.15
-    yaw = math.atan2(pose_target_4.position.x, pose_target_4.position.y) - math.pi/2.0
+    yaw = math.atan2(pose_target_4.position.y, pose_target_4.position.x)
     q = tf.transformations.quaternion_from_euler(yaw, math.pi/4.0, 0.0)
     pose_target_4.orientation.x =  q[0]
     pose_target_4.orientation.y =  q[1]
