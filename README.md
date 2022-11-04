@@ -1,9 +1,7 @@
 # 専門実験 OpenManipulator-X & AR-Detection
 
 ## 概要
-- OpenManipulator-Xの実機立ち上げ
-- ウェブカメラによるARマーカー認識
-- ウェブカメラのキャリブレーション方法も紹介
+OpenManipulator-XによるARマーカのピック&プレース。
 
 ## 使用製品
 - OpenManipulator-X
@@ -12,20 +10,6 @@
 ## 開発環境
 - Ubuntu 20.04
 - ROS Noetic
-
-※ OpenManipulator No.10に環境を整えましたので参照ください
-
-## プロキシ設定
-gedit .bashrc
-```
-export http_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
-export https_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
-```
-sudo gedit /etc/apt/apt.conf
-```
-Acquire::http::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
-Acquire::https::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
-```
 
 ## 使用するパッケージ
 - OpenManipulator-X関連
@@ -36,6 +20,7 @@ Acquire::https::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
 - usb_cam
 
 ## 実行方法
+### ARマーカのピック&プレース
 - 1つ目のターミナル
 ```
 sudo chmod 777 /dev/ttyUSB0
@@ -51,31 +36,48 @@ sudo chmod +x /dev/videoxxx
 roslaunch experiment camera_bringup.launch video_device:=/dev/videoxxx
 ```
 
+- 3つ目のターミナル
+```
+python3 ar_picking_demo.py
+```
 
----
-## ウェブカメラの内部キャリブレーション
-### 目的
+### 動作動画
+
+## 付録
+### ①OpenManipulator-X座標軸
+
+ROSの座標軸では赤,緑,青の順にx,y,zに対応している。
+
+![image](https://user-images.githubusercontent.com/42795206/199896505-963f452c-91a2-406c-b6f3-8a31c1e9ec68.png)
+
+
+以下の画像は、OpenManipulator-Xのエンドエフェクタ座標軸。
+
+![image](https://user-images.githubusercontent.com/42795206/199895712-15ec1155-540e-475b-aee2-1ae4142e698c.png)
+
+### ②ウェブカメラのキャリブレーション
+#### 目的
 ar_track_alvarを使用する場合，カメラのイメージトピック(/camera_raw), 内部パラメータトピック(/camera_info)が必要となる
 
 webカメラ(Logicool)をROSで扱う場合，内部パラメータトピック(/camera_info)の値が欠損している
 
 つまり，**内部パラメータを自分たちでキャリブレーションを通して情報付与する必要がある**
 
-### 手順
-#### 1. キャリブレーションパッケージのインストール
+#### 手順
+##### 1. キャリブレーションパッケージのインストール
 ```
 sudo apt install -y ros-noetic-camera-calibration
 
 sudo apt install -y ros-noetic-image-proc
 ```
 
-#### 2. チェッカーボードの印刷
+##### 2. チェッカーボードの印刷
 - [チェッカーボード](http://wiki.ros.org/camera_calibration/Tutorials/MonocularCalibration?action=AttachFile&do=get&target=check-108.pdf)を保存してA4で印刷する
 - チェックの交点が8x6個，一辺が0.025mの格子が描画された紙だったらOK
 
 (OpenManipulator No.10機体には既に，私が印刷したチェッカーボードを置いてある)
 
-#### 3. 測定
+##### 3. 測定
 - 1つ目のターミナル
 ```
 roscore
@@ -112,7 +114,7 @@ rosrun camera_calibration camearcalibrator.py --size 8x6 --square 0.025 image:=/
 
 この計算は数分かかります
 
-#### 4. 測定結果と取り出し
+##### 4. 測定結果と取り出し
 `/tmp/calibrationdata.tar.gz`に 3. の測定結果が保存されています
 
 以下の操作で解答及びファイルのリネームをします
@@ -130,18 +132,21 @@ camera_name: camera        # このように修正
 
 camera.yamlを任意の位置に設定します
 
-(No.10機体のUbuntuではexperimentパッケージ内に設定しました)
-
-## ARマーカ
-### マーカの印刷
+### ③ARマーカの印刷
 4.5cmのマーカを生成する。
 ```
 rosrun ar_track_alvar createMarker -s 4.5 -p
 ```
 
-## ARマーカのピッキング
+### ④プロキシ設定
+## プロキシ設定
+.bashrc
 ```
-roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=false
-roslaunch experiment camera_bringup.launch
-python3 ar_picking_demo.py
+export http_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
+export https_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
+```
+/etc/apt/apt.conf
+```
+Acquire::http::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
+Acquire::https::Proxy "http://wwwproxy.kanazawa-it.ac.jp:8080";
 ```
