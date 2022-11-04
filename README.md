@@ -139,7 +139,6 @@ rosrun ar_track_alvar createMarker -s 4.5 -p
 ```
 
 ### ④プロキシ設定
-## プロキシ設定
 .bashrc
 ```
 export http_proxy="http://wwwproxy.kanazawa-it.ac.jp:8080"
