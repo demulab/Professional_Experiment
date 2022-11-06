@@ -1,13 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-    #日本語のコメントを入れるためのおまじない
 
-### 実行手順 #######################################
-# 1. roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=false
-# 2. roslaunch experiment camera_bringup.launch
-# 3. roscd open_manipulator_controller/scripts
-# 4. python3 ar_picking_demo.py
-####################################################
-
 import sys, math, copy
 import rospy, tf, geometry_msgs.msg
 
@@ -70,19 +63,19 @@ if __name__ == '__main__':
     pose_init = group.get_current_pose()  # エンドエフェクタの位置(x, y, z)を取得
     rospy.loginfo( "Get Initial Pose\n{}".format( pose_init ) )
     rpy_init  = group.get_current_rpy()   # エンドエフェクタの姿勢(roll, pitch, yaw)を取得
-    rospy.loginfo( "Get Initial RPY:{}".format( rpy_init ) )
+    rospy.loginfo("Get Initial RPY:{}".format( rpy_init ) )
     
     # グリッパの初期値を取得
     gripper_joint_angle = gripper_group.get_current_joint_values()
     print("Get Current Gripper angle:\n{}\n".format(gripper_joint_angle))
 
     open_gripper()
-    rospy.loginfo( "Starting Pose 1")
+    rospy.loginfo("Starting Pose 1")
     pose_target_1 = Pose()
     pose_target_1.position.x = 0.03 # エンドエフェクタの位置(x,y,z)を指定
     pose_target_1.position.y = 0.0
     pose_target_1.position.z = 0.15
-    yaw = math.atan2(pose_target_1.position.y, pose_target_1.position.x)
+    yaw = -math.atan2(pose_target_1.position.y, pose_target_1.position.x)
     q = tf.transformations.quaternion_from_euler(yaw, 0.0, 0.0) # エンドエフェクタの姿勢(yaw,pitch,roll)を指定
     pose_target_1.orientation.x =  q[0]
     pose_target_1.orientation.y =  q[1]
@@ -93,15 +86,13 @@ if __name__ == '__main__':
     rospy.sleep(1.0)
     pose_current = group.get_current_pose()
     rospy.loginfo("Get Current Pose:\n{}\n".format(pose_current )) 
-    
-    rospy.sleep(3.0)
      
-    rospy.loginfo( "Starting Pose 2")
+    rospy.loginfo("Starting Pose 2")
     pose_target_2 = Pose()
     pose_target_2.position.x = ar_pose.position.x
     pose_target_2.position.y = ar_pose.position.y
-    pose_target_2.position.z = ar_pose.position.z + 0.035 # エンドエフェクタと床の衝突を防ぐために、0.035[m]の余裕を持たせている 
-    yaw = math.atan2(pose_target_2.position.y, pose_target_2.position.x)
+    pose_target_2.position.z = ar_pose.position.z + 0.05 # エンドエフェクタと床の衝突を防ぐために、0.035[m]の余裕を持たせている 
+    yaw = -math.atan2(pose_target_2.position.y, pose_target_2.position.x)
     q = tf.transformations.quaternion_from_euler(yaw, math.pi/2.0, 0.0)
     pose_target_2.orientation.x = q[0]
     pose_target_2.orientation.y = q[1]
@@ -114,14 +105,12 @@ if __name__ == '__main__':
     rospy.loginfo( "Get Current Pose:\n{}\n".format(pose_current)) 
     close_gripper()
 
-    rospy.sleep(3.0)
-
-    rospy.loginfo( "Starting Pose 3")
+    rospy.loginfo("Starting Pose 3")
     pose_target_3 = Pose()
     pose_target_3.position.x = 0.1
     pose_target_3.position.y = 0.1
     pose_target_3.position.z = 0.15
-    yaw = math.atan2(pose_target_3.position.y, pose_target_3.position.x)
+    yaw = -math.atan2(pose_target_3.position.y, pose_target_3.position.x)
     q = tf.transformations.quaternion_from_euler(yaw, math.pi/4.0, 0.0)
     pose_target_3.orientation.x =  q[0]
     pose_target_3.orientation.y =  q[1]
@@ -133,16 +122,14 @@ if __name__ == '__main__':
     pose_current = group.get_current_pose()
     rospy.loginfo("Get Current Pose:\n{}\n".format(pose_current))
     open_gripper()
-
-    rospy.sleep(3.0)
     
-    rospy.loginfo( "Starting Pose 4")
+    rospy.loginfo("Starting Pose 4")
     pose_target_4 = Pose()
-    pose_target_4.position.x = 0.1
+    pose_target_4.position.x = 0.05
     pose_target_4.position.y = 0.0
     pose_target_4.position.z = 0.15
-    yaw = math.atan2(pose_target_4.position.y, pose_target_4.position.x)
-    q = tf.transformations.quaternion_from_euler(yaw, math.pi/4.0, 0.0)
+    yaw = -math.atan2(pose_target_4.position.y, pose_target_4.position.x)
+    q = tf.transformations.quaternion_from_euler(yaw, 0.0, 0.0)
     pose_target_4.orientation.x =  q[0]
     pose_target_4.orientation.y =  q[1]
     pose_target_4.orientation.z =  q[2]
