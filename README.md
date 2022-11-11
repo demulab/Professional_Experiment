@@ -47,6 +47,7 @@ roslaunch experiment camera_bringup.launch video_device:=/dev/videoxxx
 ARマーカをピック＆プレースする。
 
 ```
+roscd experiment/script
 python3 ar_picking_demo.py
 ```
 
