@@ -22,7 +22,9 @@ OpenManipulator-XによるARマーカのピック&プレース。
 ## 実行方法
 ### ARマーカのピック&プレース
 - 1つ目のターミナル
+
 Moveitを起動する。
+
 ```
 sudo chmod 777 /dev/ttyUSB0
 
@@ -30,7 +32,9 @@ roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=f
 ```
 
 - 2つ目のターミナル
-カメラとARマーカ認識プログラムを起動する
+
+カメラとARマーカ認識プログラムを起動する。
+
 ```
 sudo chmod +x /dev/videoxxx
 (xxx: ウェブカメラのデバイス番号)
@@ -39,7 +43,9 @@ roslaunch experiment camera_bringup.launch video_device:=/dev/videoxxx
 ```
 
 - 3つ目のターミナル
+
 ARマーカをピック＆プレースする。
+
 ```
 python3 ar_picking_demo.py
 ```
