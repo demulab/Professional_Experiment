@@ -22,6 +22,7 @@ OpenManipulator-XによるARマーカのピック&プレース。
 ## 実行方法
 ### ARマーカのピック&プレース
 - 1つ目のターミナル
+Moveitを起動する。
 ```
 sudo chmod 777 /dev/ttyUSB0
 
@@ -29,6 +30,7 @@ roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=f
 ```
 
 - 2つ目のターミナル
+カメラとARマーカ認識プログラムを起動する
 ```
 sudo chmod +x /dev/videoxxx
 (xxx: ウェブカメラのデバイス番号)
@@ -37,11 +39,10 @@ roslaunch experiment camera_bringup.launch video_device:=/dev/videoxxx
 ```
 
 - 3つ目のターミナル
+ARマーカをピック＆プレースする。
 ```
 python3 ar_picking_demo.py
 ```
-
-### 動作動画
 
 ## 付録
 ### ①OpenManipulator-X座標軸
@@ -130,7 +131,8 @@ camera_name: narrow_stereo # この行を
 camera_name: camera        # このように修正
 ```
 
-camera.yamlを任意の位置に設定します
+camera.yamlを/experiment/config/に保存する。
+
 
 ### ③ARマーカの印刷
 3.0cmのマーカを生成する。
