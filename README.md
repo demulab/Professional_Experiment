@@ -21,6 +21,13 @@ OpenManipulator-XによるARマーカのピック&プレース。
 
 ## 実行方法
 ### ARマーカのピック&プレース
+画像のように、積み木にARマーカを貼る。
+
+**安全のためARマーカを貼った積み木は、別の積み木に載せる**。エンドエフェクタ（ロボットハンド）が床に衝突することを防ぐため。
+
+![image](https://user-images.githubusercontent.com/42795206/201274028-bf8cd1ca-0639-4dde-976c-62510a0c76c6.png)
+
+
 - 1つ目のターミナル
 
 Moveitを起動する。
@@ -36,10 +43,7 @@ roslaunch open_manipulator_controllers joint_trajectory_controller.launch sim:=f
 カメラとARマーカ認識プログラムを起動する。
 
 ```
-sudo chmod +x /dev/videoxxx
-(xxx: ウェブカメラのデバイス番号)
-
-roslaunch experiment camera_bringup.launch video_device:=/dev/videoxxx
+roslaunch experiment camera_bringup.launch
 ```
 
 - 3つ目のターミナル
