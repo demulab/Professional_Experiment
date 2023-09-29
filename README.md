@@ -14,3 +14,6 @@
 - [chapter3](https://github.com/demulab/Professional_Experiment/blob/main/document/chapter3.md)
 - [chapter4](https://github.com/demulab/Professional_Experiment/blob/main/document/chapter4.md)
 - [chapter5](https://github.com/demulab/Professional_Experiment/blob/main/document/chapter5.md)
+
+## ARマーカのピッキングデモ
+https://github.com/demulab/Professional_Experiment/blob/main/document/AR_picking.md
