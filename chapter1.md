@@ -5,7 +5,7 @@ https://emanual.robotis.com/docs/en/platform/openmanipulator_x/overview/
 ## ロボットを動かす準備
 本実験ではOpenMANIPULATOR-XのコントローラとしてU2D2 (デバイス名：ttyUSB）を使います．まず，U2D2とPCをUSBケーブルで接続しましょう．次に，U2D2 Power Hub BoardにACアダプタを接続して，Power switch（電源スイッチ）を入れる．ノートPCに配布されたUSBを差し込む．このUSBで起動すると実験の設定済みのOSであるUbuntuが起動する．
 
-![Alt text](image.png)
+![Alt text](figure/chapter1/image.png)
 
 本実験では，Windowsは使わず，Ubuntuを使う．ログイン時にユーザ名とパスワードを聞かれるので以下を入力する．なお，パスワードを入力しても何も見えが気にせず入力してからEnterキーを押す．
 ```
@@ -34,10 +34,17 @@ GUI プログラムの起動．別の端末を開き，次のコマンドを実�
 $ roslaunch open_manipulator_control_gui open_manipulator_control_gui.launch
 ```
 下図のウインドウが開くので右上の Timer Start ボタンをクリックする．
-![Alt text](image-1.png)
+
+![Alt text](figure/chapter1/image-1.png)
+
 OpenMANIPULATOR-Xの状態をチェックしよう.
-![Alt text](image-2.png)
+
+![Alt text](figure/chapter1/image-2.png)
+
 OpenMANIPULATOR-X をジョイント(関節)空間で動かす場合は， 関節角と軌道時間を入力しから， send ボタンをクリックする．
-![Alt text](image-3.png)
+
+![Alt text](figure/chapter1/image-3.png)
+
 OpenMANIPULATOR-X をタスク空間で動かすためには，X, Y, Z各軸の値と軌道時間を入力してから， send ボタンをクリックする．
-![Alt text](image-4.png)
+
+![Alt text](figure/chapter1/image-4.png)
